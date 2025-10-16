@@ -1,0 +1,113 @@
+/* styles.css */
+
+/* базовые плавные переходы */
+* { transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+
+/* Light theme (по умолчанию) */
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+.card, .modal-content, .table, input, select, textarea {
+    background-color: #fff;
+    color: #212529;
+    border-color: #dee2e6;
+}
+.table th, .table td {
+    border-color: #dee2e6;
+}
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+}
+
+/* Dark theme */
+body.dark-mode {
+    background-color: #0f1115; /* чуть темнее, чтобы контраст был сильнее */
+    color: #e6eef8;
+}
+body.dark-mode .card,
+body.dark-mode .modal-content,
+body.dark-mode .table,
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: #15171a;
+    color: #e6eef8;
+    border-color: #2b2f33;
+}
+body.dark-mode .table th,
+body.dark-mode .table td {
+    border-color: #2b2f33;
+}
+body.dark-mode .btn-primary {
+    background-color: #2e3a46;
+    border-color: #2e3a46;
+    color: #e6eef8;
+}
+body.dark-mode .btn-outline-secondary {
+    color: #e6eef8;
+    border-color: #555;
+    background-color: transparent;
+}
+/* специфичность на кнопки bootstrap (если нужно) */
+body.dark-mode .btn.btn-outline-secondary {
+    color: #e6eef8;
+}
+/* ---------- force dark table colors ---------- */
+/* общие цвета для текста/границ в тёмной теме */
+body.dark-mode .table,
+body.dark-mode .table th,
+body.dark-mode .table td {
+    color: #e6eef8;         /* текст */
+    border-color: #333 !important; /* границы */
+}
+
+/* фон для всей таблицы (внутри dark-mode) */
+body.dark-mode .table {
+    background-color: #15171a !important;
+}
+
+/* thead */
+body.dark-mode .table thead th {
+    background-color: #101214 !important;
+    color: #f5f5f5 !important;
+}
+
+/* striped rows: чётные / нечётные */
+body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #15171a !important; /* основной фон строки */
+}
+body.dark-mode .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #191b1e !important; /* немного другой для контраста */
+}
+
+/* hover state */
+body.dark-mode .table-hover > tbody > tr:hover,
+body.dark-mode .table tbody tr:hover {
+    background-color: #222529 !important;
+}
+
+/* если Bootstrap добавляет background на td напрямую — безопасно перекрыть */
+body.dark-mode .table td,
+body.dark-mode .table th {
+    background-color: transparent !important;
+}
+
+/* поправим пагинацию/insight: кнопки и badges внутри таблицы */
+body.dark-mode .btn,
+body.dark-mode .badge {
+    color: #e6eef8 !important;
+}
+
+/* плавный переход (опционально) */
+body.dark-mode .table,
+body.dark-mode .table th,
+body.dark-mode .table td {
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+
+/* тема-тоггл (визуально) */
+.theme-toggle { cursor: pointer; }

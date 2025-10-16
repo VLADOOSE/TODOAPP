@@ -1,0 +1,14 @@
+package com.vladoose.todoapp.repository;
+
+import com.vladoose.todoapp.model.Task;
+import com.vladoose.todoapp.util.enums.TaskStatus;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface TaskRepository extends JpaRepository<Task, Long> {
+    List<Task> findByStatus(TaskStatus status);
+    List<Task> findAllByOrderByDueDateAsc();
+
+
+}
