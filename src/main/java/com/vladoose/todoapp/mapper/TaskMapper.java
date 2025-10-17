@@ -11,7 +11,6 @@ public interface TaskMapper {
     TaskDto toDto(Task task);
     Task toEntity(TaskDto dto);
 
-    // Дополнительно: преобразование списков
     List<TaskDto> toDtoList(List<Task> tasks);
 }
 

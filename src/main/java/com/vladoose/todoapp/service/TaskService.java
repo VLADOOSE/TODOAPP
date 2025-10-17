@@ -5,8 +5,11 @@ import com.vladoose.todoapp.exception.NotFoundException;
 import com.vladoose.todoapp.mapper.TaskMapper;
 import com.vladoose.todoapp.model.Task;
 import com.vladoose.todoapp.repository.TaskRepository;
+import com.vladoose.todoapp.util.enums.TaskStatus;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,25 @@ public class TaskService {
         this.taskRepository = taskRepository;
         this.taskMapper = taskMapper;
     }
+    public List<TaskDto> getTasks(String status, String sortBy, String order) {
+        Sort sort = Sort.unsorted();
 
+        if (sortBy != null && !sortBy.isEmpty()) {
+            Sort.Direction direction = "desc".equalsIgnoreCase(order) ? Sort.Direction.DESC : Sort.Direction.ASC;
+            sort = Sort.by(direction, sortBy);
+        }
+
+        List<Task> tasks;
+
+        if (status != null && !status.isEmpty()) {
+            TaskStatus taskStatus = TaskStatus.valueOf(status.toUpperCase());
+            tasks = taskRepository.findByStatus(taskStatus, sort);
+        } else {
+            tasks = taskRepository.findAll(sort);
+        }
+
+        return taskMapper.toDtoList(tasks);
+    }
     public List<TaskDto> getAllTasks(){
         return  taskMapper.toDtoList(taskRepository.findAll());
     }

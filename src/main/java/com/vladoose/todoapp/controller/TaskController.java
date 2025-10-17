@@ -18,11 +18,15 @@ public class TaskController {
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
-
     @GetMapping
-    public List<TaskDto> getAllTasks() {
-        return taskService.getAllTasks();
+    public List<TaskDto> getTasks(
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false) String order
+    ) {
+        return taskService.getTasks(status, sortBy, order);
     }
+
 
     @GetMapping("/{id}")
     public TaskDto getTaskById(@PathVariable Long id) {

@@ -11,10 +11,10 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(TaskNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> handleNotFound(TaskNotFoundException ex) {
+    public Map<String, String> handleNotFound(NotFoundException ex) {
         return Map.of("error", ex.getMessage());
     }
 }

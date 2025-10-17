@@ -16,14 +16,11 @@ public class WebTaskController {
     public WebTaskController(TaskService taskService) {
         this.taskService = taskService;
     }
-
-    // Страница со списком задач
     @GetMapping("/tasks")
     public String tasksPage() {
-        return "tasks"; // возвращаем tasks.html
+        return "tasks";
     }
 
-    // сюда не добавляем @ResponseBody API методы!
 }
 
 
