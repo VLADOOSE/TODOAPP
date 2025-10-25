@@ -50,11 +50,9 @@ public class TaskService {
     }
 
     public TaskDto getTaskById(Long id){
-        if(taskRepository.findById(id).isPresent()){
-            return taskMapper.toDto(taskRepository.findById(id).get());
-        }else{
-            throw new NotFoundException("Таск не найден");
-        }
+        return taskRepository.findById(id)
+                .map(taskMapper::toDto)
+                .orElseThrow(() -> new NotFoundException("Таск не найден"));
     }
     @Transactional
     public TaskDto createTask(TaskDto dto){
